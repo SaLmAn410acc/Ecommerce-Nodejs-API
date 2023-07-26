@@ -10,7 +10,9 @@ const cookieParser = require("cookie-parser");
 //Database connection import
 const connectDB = require("./db/connect");
 
-const authRoutes = require("./routes/authRoute");
+//Routes
+const authRouter = require("./routes/authRoute");
+const userRouter = require("./routes/userRoute");
 
 //importing middlewares
 const notFoundMiddleware = require("./middleware/not-found");
@@ -41,7 +43,8 @@ app.get("/api/v1/", (req, res) => {
   });
 });
 
-app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
 
 //Routes Middleware
 app.use(errorHandlerMiddleware);
