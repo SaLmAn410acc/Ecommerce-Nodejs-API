@@ -108,9 +108,9 @@
 
 #### GetAllUsers and GetSingleUser
 
-- [] Get all users where role is 'user' and remove password
-- [] Get Single User where id matches id param and remove password
-- [] If no user 404
+- [-] Get all users where role is 'user' and remove password
+- [-] Get Single User where id matches id param and remove password
+- [-] If no user 404
 
 #### Authenticate User Setup
 

@@ -8,11 +8,11 @@ const createJWT = ({ payload }) => {
 };
 
 const isTokenValid = ({ token }) => {
-  jwt.verify(token, JWT_SECRET);
+  return jwt.verify(token, process.env.JWT_SECRET);
 };
 
 const attachCookiesToResponse = ({ res, userData }) => {
-  console.log(userData);
+  // console.log(userData);
 
   const token = createJWT({ payload: userData });
 

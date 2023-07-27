@@ -4,6 +4,7 @@ const { NotFoundError } = require("../errors/index");
 const httpCodes = require("http-status-codes");
 
 const getAllUsers = async (req, res) => {
+  console.log(req.user);
   const users = await User.find({ role: "user" }).select("-password");
 
   if (!users) {
@@ -30,7 +31,8 @@ const getSingleUser = async (req, res) => {
 };
 
 const showCurrentUser = async (req, res) => {
-  res.send("Current User");
+  console.log(req.user);
+  res.status(httpCodes.OK).json({ user: req.user });
 };
 
 const updateUser = async (req, res) => {
