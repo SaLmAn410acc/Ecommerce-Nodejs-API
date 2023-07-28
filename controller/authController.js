@@ -5,7 +5,7 @@ const {
   UnauthenticatedError,
   NotFoundError,
 } = require("../errors");
-const { attachCookiesToResponse } = require("../utils/index");
+const { attachCookiesToResponse, createTokenUser } = require("../utils/index");
 // const { token } = require("morgan");
 
 const login = async (req, res) => {
@@ -25,7 +25,7 @@ const login = async (req, res) => {
     throw new UnauthenticatedError("Please provide valid password");
   }
 
-  const payload = { name: chkUser.name, id: chkUser.id, role: chkUser.role };
+  const payload = createTokenUser(chkUser);
 
   attachCookiesToResponse({ res, userData: payload });
 
@@ -52,7 +52,7 @@ const register = async (req, res) => {
     role: role,
   });
 
-  const payload = { name: user.name, id: user._id, role: user.role };
+  const payload = createTokenUser(user);
 
   attachCookiesToResponse({ res, userData: payload });
   // const token = createJWT({ payload: payload });

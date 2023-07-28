@@ -3,6 +3,8 @@ const {
   getAllUsers,
   getSingleUser,
   showCurrentUser,
+  updateUserPassword,
+  updateUser,
 } = require("../controller/userController");
 const {
   userAuthenticate,
@@ -12,7 +14,10 @@ const {
 router
   .route("/")
   .get(userAuthenticate, userPermissions("admin", "owner"), getAllUsers);
-router.route("/:id").get(getSingleUser);
 router.route("/showMe").get(userAuthenticate, showCurrentUser);
+router.route("/updateUserPassword").patch(userAuthenticate, updateUserPassword);
+router.route("/updateUser").patch(userAuthenticate, updateUser);
+
+router.route("/:id").get(getSingleUser);
 
 module.exports = router;

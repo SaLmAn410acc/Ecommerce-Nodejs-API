@@ -3,7 +3,6 @@ const { UnauthorizedError, UnauthenticatedError } = require("../errors/index");
 
 const userAuthenticate = async (req, res, next) => {
   const token = req.signedCookies.tokenCookie;
-
   if (!token) {
     throw new UnauthenticatedError("Authentication Invalid");
   }
