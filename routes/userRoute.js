@@ -17,7 +17,6 @@ router
 router.route("/showMe").get(userAuthenticate, showCurrentUser);
 router.route("/updateUserPassword").patch(userAuthenticate, updateUserPassword);
 router.route("/updateUser").patch(userAuthenticate, updateUser);
-
-router.route("/:id").get(getSingleUser);
+router.route("/:id").get(userAuthenticate, getSingleUser);
 
 module.exports = router;

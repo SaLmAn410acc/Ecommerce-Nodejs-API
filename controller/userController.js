@@ -7,7 +7,11 @@ const {
 } = require("../errors/index");
 const httpCodes = require("http-status-codes");
 
-const { createTokenUser, attachCookiesToResponse } = require("../utils/index");
+const {
+  createTokenUser,
+  attachCookiesToResponse,
+  checkPermissions,
+} = require("../utils/index");
 
 const getAllUsers = async (req, res) => {
   console.log(req.user);
@@ -31,6 +35,8 @@ const getSingleUser = async (req, res) => {
     throw new NotFoundError("Nothing found");
   }
 
+  checkPermissions(req.user, user._id);
+
   res.status(httpCodes.OK).json({
     user,
   });
@@ -38,6 +44,7 @@ const getSingleUser = async (req, res) => {
 
 const showCurrentUser = async (req, res) => {
   // res.status(200).send("hello current user");
+
   res.json({ user: req.user });
 };
 
