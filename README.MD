@@ -162,59 +162,59 @@
 
 #### Product Model
 
-- [] create Product.js in models folder
-- [] create Schema
-- [] name : {type:String}
-- [] price: {type:Number}
-- [] description: {type:String}
-- [] image: {type:String}
-- [] category: {type:String}
-- [] company: {type:String}
-- [] colors: {type:[]}
-- [] featured: {type:Boolean}
-- [] freeShipping: {type:Boolean}
-- [] inventory:{type:Number}
-- [] averageRating:{type:Number}
-- [] user
-- [] set timestamps
-- [] export Product model
+- [-] create Product.js in models folder
+- [-] create Schema
+- [-] name : {type:String}
+- [-] price: {type:Number}
+- [-] description: {type:String}
+- [-] image: {type:String}
+- [-] category: {type:String}
+- [-] company: {type:String}
+- [-] colors: {type:[]}
+- [-] featured: {type:Boolean}
+- [-] freeShipping: {type:Boolean}
+- [-] inventory:{type:Number}
+- [-] averageRating:{type:Number}
+- [-] user
+- [-] set timestamps
+- [-] export Product model
 
 #### Product Structure
 
-- [] add productController file in controllers
-- [] export (createProduct, getAllProducts,
+- [-] add productController file in controllers
+- [-] export (createProduct, getAllProducts,
   getSingleProduct, updateProduct, deleteProduct, uploadImage) functions
-- [] res.send('function name')
-- [] setup productRoutes file in routes
-- [] import all controllers
-- [] only getAllProducts and getSingleProduct accessible to public
-- [] rest only by admin (setup middlewares)
-- [] typical setup
-- [] router.route('/uploadImage').post(uploadImage)
-- [] import productRoutes as productRouter in the app.js
-- [] setup app.use('/api/v1/products', productRouter)
+- [-] res.send('function name')
+- [-] setup productRoutes file in routes
+- [-] import all controllers
+- [-] only getAllProducts and getSingleProduct accessible to public
+- [-] rest only by admin (setup middlewares)
+- [-] typical setup
+- [-] router.route('/uploadImage').post(uploadImage)
+- [-] import productRoutes as productRouter in the app.js
+- [-] setup app.use('/api/v1/products', productRouter)
 
 #### Product Routes in Postman
 
 #### Create Product
 
-- [] create user property on req.body and set it equal to userId (req.user)
-- [] pass req.body into Product.create
-- [] send back the product
+- [-] create user property on req.body and set it equal to userId (req.user)
+- [-] pass req.body into Product.create
+- [-] send back the product
 
 #### Remaining Controllers (apart from uploadImage)
 
-- [] getAllProducts
-- [] getSingleProduct
-- [] updateProduct
-- [] deleteProduct
-- [] typical CRUD, utilize (task or job) project
-- [] remember we check already for role 'admin'
+- [-] getAllProducts
+- [-] getSingleProduct
+- [-] updateProduct
+- [-] deleteProduct
+- [-] typical CRUD, utilize (task or job) project
+- [-] remember we check already for role 'admin'
 
 #### Upload Image
 
-- [] if some question, re-watch 07-file-upload
-- [] images folder with two images
+- [-] if some question, re-watch 07-file-upload
+- [-] images folder with two images
 
 #### Review Model
 
