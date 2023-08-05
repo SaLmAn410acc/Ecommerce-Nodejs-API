@@ -9,6 +9,8 @@ const {
   uploadImage,
 } = require("../controller/productController");
 
+const { getSingleProductReview } = require("../controller/reviewController");
+
 const {
   userAuthenticate,
   userPermissions,
@@ -27,4 +29,5 @@ router
   .route("/uploadImage")
   .post(userAuthenticate, userPermissions("admin", "owner"), uploadImage);
 
+router.route("/:id/review").get(getSingleProductReview);
 module.exports = router;
