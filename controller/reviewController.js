@@ -3,6 +3,7 @@ const Product = require("../models/Product");
 
 const httpCodes = require("http-status-codes");
 const { NotFoundError, BadRequestError } = require("../errors/index");
+const { checkPermissions } = require("../utils/index");
 
 const createReview = async (req, res) => {
   const { productId: productId } = req.body;
@@ -26,20 +27,64 @@ const createReview = async (req, res) => {
   res.status(httpCodes.CREATED).json({ review: review });
 };
 
-const getAllReviews = (req, res) => {
-  res.send("getAllReviews");
+const getAllReviews = async (req, res) => {
+  const review = await Review.find({}).populate({
+    path: "product",
+    select: "name company price",
+  });
+  if (!review) {
+    throw new BadRequestError("Something went wrong");
+  }
+  res.status(httpCodes.OK).json({ review: review });
 };
 
 const getSingleReview = async (req, res) => {
-  res.send("getSingleReview");
+  const reviewId = req.params.id;
+  const review = await Review.findOne({ _id: reviewId });
+
+  if (!review) {
+    throw new NotFoundError("No review in with this id");
+  }
+  res.status(httpCodes.OK).json({ review: review });
 };
 
 const updateReview = async (req, res) => {
-  res.send("updateReview");
+  const reviewId = req.params.id;
+
+  const { rating, title, comment } = req.body;
+
+  const review = await Review.findOne({ _id: reviewId });
+  if (!review) {
+    throw new NotFoundError("No review in with this id");
+  }
+
+  checkPermissions(req.user, review.user);
+
+  review.rating = rating;
+  review.title = title;
+  review.comment = comment;
+
+  await review.save();
+
+  res.status(httpCodes.OK).json({
+    updatedReview: review,
+  });
 };
 
 const deleteReview = async (req, res) => {
-  res.send("deleteReview");
+  const reviewId = req.params.id;
+
+  const review = await Review.findOne({ _id: reviewId });
+  if (!review) {
+    throw new NotFoundError("No review in with this id");
+  }
+  checkPermissions(req.user, review.user);
+
+  await review.remove();
+
+  res.status(httpCodes.OK).json({
+    success: true,
+  });
 };
 
 module.exports = {

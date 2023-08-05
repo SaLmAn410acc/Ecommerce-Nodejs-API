@@ -1,15 +1,4 @@
 const mongoose = require("mongoose");
-//      name : {type:String}
-// - [] price: {type:Number}
-// - [] description: {type:String}
-// - [] image: {type:String}
-// - [] category: {type:String}
-// - [] company: {type:String}
-// - [] colors: {type:[]}
-// - [] featured: {type:Boolean}
-// - [] freeShipping: {type:Boolean}
-// - [] inventory:{type:Number}
-// - [] averageRating:{type:Number}
 
 const ProductSchema = new mongoose.Schema(
   {
@@ -81,5 +70,12 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
   // { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+ProductSchema.virtual("reviews", {
+  ref: "Review",
+  localField: "_id",
+  foreignField: "product",
+  justOne: false,
+});
 
 module.exports = mongoose.model("Product", ProductSchema);
