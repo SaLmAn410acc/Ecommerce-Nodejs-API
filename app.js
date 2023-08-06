@@ -17,6 +17,7 @@ const authRouter = require("./routes/authRoute");
 const userRouter = require("./routes/userRoute");
 const productRouter = require("./routes/productRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const orderRouter = require("./routes/orderRoutes");
 
 //importing middlewares
 const notFoundMiddleware = require("./middleware/not-found");
@@ -54,6 +55,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/reviews", reviewRouter);
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1/orders", orderRouter);
 
 //Routes Middleware
 app.use(errorHandlerMiddleware);
