@@ -20,7 +20,7 @@ const getAllProducts = async (req, res) => {
     throw new NotFoundError("No product found is something wrong!");
   }
 
-  res.status(httpCodes.OK).json({ product });
+  res.status(httpCodes.OK).render("index", { products: product });
 };
 
 const getSingleProduct = async (req, res) => {
